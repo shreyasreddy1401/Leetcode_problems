@@ -9,5 +9,5 @@ class Solution:
             F(nums,start+1,d+[nums[start]],ds)
             F(nums,start+1,d,ds)
         F(sorted(nums),0,d,ds)
-        return sorted(ds)
+        return(ds)
         
