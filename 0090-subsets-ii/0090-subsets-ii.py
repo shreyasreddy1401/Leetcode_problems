@@ -1,13 +1,15 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        d = []
+        nums.sort()
         ds = []
-        def F(nums,start,d,ds):
-            if start == len(nums):
-                ds.append(d) if d not in ds else None
-                return
-            F(nums,start+1,d+[nums[start]],ds)
-            F(nums,start+1,d,ds)
-        F(sorted(nums),0,d,ds)
-        return(ds)
+        def K(nums,start,d,ds):
+            ds.append(d[:])
+            for i in range(start,len(nums)):
+                if i != start and nums[i] == nums[i-1]:
+                    continue
+                d.append(nums[i])
+                K(nums,i+1,d,ds)
+                d.pop()
+        K(nums,0,[],ds)
+        return ds
         
